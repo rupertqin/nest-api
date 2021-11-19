@@ -10,8 +10,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('check-university')
-  checkUniversity(@Query('name') name): string[] {
-    return this.appService.checkUniversity(name);
+  @Get('search-university')
+  searchUniversity(@Query('name') name): string[] {
+    return this.appService.searchUniversity(name);
   }
 }

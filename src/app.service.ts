@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-const universities = require('./china_mainland_universities.json');
+import universities from './china_mainland_universities.json';
 
-const _universityies: string[] = []
+const _universityies: string[] = [];
 for (const key in universities) {
-  _universityies.push(...universities[key].all)
+  const cities = universities[key].all || universities[key];
+  _universityies.push(...cities);
 }
-
 
 @Injectable()
 export class AppService {
@@ -13,8 +13,8 @@ export class AppService {
     return 'Hello World!';
   }
 
-  checkUniversity(name): string[] {
+  searchUniversity(name): string[] {
     if (!name.trim()) return [];
-    return _universityies.filter(uname => uname.includes(name))
+    return _universityies.filter((uname) => uname.includes(name));
   }
 }
